@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "DŽKO",
+    "slug": "dzko-2026",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "primaryColor": "#3A24DC",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "web": {
+      "favicon": "./assets/icon.png",
+      "display": "standalone",
+      "backgroundColor": "#F1F1F1",
+      "themeColor": "#3A24DC",
+      "name": "Dny židovské kultury Olomouc",
+      "shortName": "DŽKO"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-status-bar"
+    ]
+  }
+}

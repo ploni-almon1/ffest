@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/pwa-icon-192b.png",
+      "dest": "/public/pwa-icon-192b.png"
+    },
+    {
+      "src": "/pwa-icon-512b.png",
+      "dest": "/public/pwa-icon-512b.png"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/public/manifest.json"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "short_name": "DŽKO",
+  "name": "DŽKO",
+  "icons": [
+    {
+      "src": "/pwa-icon-192b.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-icon-512b.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#000000"
+}
