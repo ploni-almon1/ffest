@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, ActivityIndicator, Linking, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Footer from './Footer';
+import { THEME } from '../../theme'; // 🎨 Načtení centrálního vzorníku
 
 export default function EventDetail({
   item,
@@ -96,9 +97,11 @@ export default function EventDetail({
                         </>
                       )}
                     </View>
-                    <TouchableOpacity onPress={() => sdiletAkci(item)} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#F3F4F6', paddingVertical: 5, paddingHorizontal: 12, borderRadius: 15 }} activeOpacity={0.6}>
-                      <Ionicons name="share-social-outline" size={16} color="black" />
-                      <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 12, marginLeft: 5, color: '#374151', fontWeight: 'bold' }}>Sdílet</Text>
+                    
+                    {/* 🎨 NAPOJENÉ TLAČÍTKO SDÍLET (DESKTOP) */}
+                    <TouchableOpacity onPress={() => sdiletAkci(item)} style={styles.actionButton} activeOpacity={0.6}>
+                      <Ionicons name="share-social-outline" size={16} color={THEME.colors.tlacitkoText} />
+                      <Text style={styles.actionButtonText}>Sdílet</Text>
                     </TouchableOpacity>
                   </View>
                   
@@ -160,7 +163,7 @@ export default function EventDetail({
                     
                     {(maRezervaci || rezervaceOdeslana) && !chciDalsiRezervaci ? (
                       <View style={{ backgroundColor: '#ECFDF5', padding: 15, borderRadius: 8, borderWidth: 1, borderColor: '#10B981' }}>
-                         <Text style={{ fontFamily: 'Inter_400Regular', color: '#065F46', textAlign: 'center', fontWeight: 'bold' }}>
+                         <Text style={{ fontFamily: THEME.fonts.regular, color: '#065F46', textAlign: 'center', fontWeight: 'bold' }}>
                            Na tuto akci máte úspěšně zajištěnou rezervaci.
                          </Text>
                          {!jePlno && (
@@ -171,13 +174,13 @@ export default function EventDetail({
                                setRezervaceJmeno(''); 
                              }}
                            >
-                             <Text style={{ color: 'white', fontFamily: 'Inter_400Regular', fontSize: 13, fontWeight: 'bold' }}>Vytvořit další rezervaci</Text>
+                             <Text style={{ color: 'white', fontFamily: THEME.fonts.regular, fontSize: 13, fontWeight: 'bold' }}>Vytvořit další rezervaci</Text>
                            </TouchableOpacity>
                          )}
                       </View>
                     ) : jePlno ? (
                       <View style={{ backgroundColor: '#F3F4F6', padding: 15, borderRadius: 8 }}>
-                         <Text style={{ fontFamily: 'Inter_400Regular', color: '#4B5563', textAlign: 'center' }}>
+                         <Text style={{ fontFamily: THEME.fonts.regular, color: THEME.colors.textDoplnkovy, textAlign: 'center' }}>
                            Kapacita této akce již byla naplněna.
                          </Text>
                       </View>
@@ -192,7 +195,7 @@ export default function EventDetail({
 
                         {chciDalsiRezervaci && (
                           <TouchableOpacity onPress={() => setChciDalsiRezervaci(false)} style={{marginTop: 15, alignSelf: 'center'}}>
-                            <Text style={{color: '#6B7280', fontFamily: 'Inter_400Regular', fontSize: 14}}>Zrušit zadávání další rezervace</Text>
+                            <Text style={{color: THEME.colors.textDoplnkovy, fontFamily: THEME.fonts.regular, fontSize: 14}}>Zrušit zadávání další rezervace</Text>
                           </TouchableOpacity>
                         )}
                       </>
@@ -206,8 +209,8 @@ export default function EventDetail({
                 {item.image ? (
                   <Image source={{ uri: item.image }} style={styles.desktopDetailImage} resizeMode="cover" />
                 ) : (
-                  <View style={[styles.desktopDetailImage, {backgroundColor: '#E5E7EB', justifyContent: 'center', alignItems: 'center'}]}>
-                    <Text style={{color: '#9CA3AF'}}>Obrázek zatím není</Text>
+                  <View style={[styles.desktopDetailImage, {backgroundColor: THEME.colors.kartaAkceOhraniceni, justifyContent: 'center', alignItems: 'center'}]}>
+                    <Text style={{color: THEME.colors.textDoplnkovy}}>Obrázek zatím není</Text>
                   </View>
                 )}
                 
@@ -215,7 +218,7 @@ export default function EventDetail({
                   if (!h.fotka && h.popis === '' && h.profese === '') return null;
                   return (
                     <View key={idx} style={{ width: '100%', marginTop: 15 }}>
-                      <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 15, color: '#000000', marginBottom: 10, fontWeight: 'bold' }}>
+                      <Text style={{ fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textHlavni, marginBottom: 10, fontWeight: 'bold' }}>
                         {h.role}
                       </Text>
                       <View style={styles.speakerCard}>
@@ -235,7 +238,7 @@ export default function EventDetail({
                 <View style={[styles.desktopDetailBottomActions, { justifyContent: 'flex-end', width: '100%', alignItems: 'flex-start', marginTop: 25 }]}>
                   <View style={styles.detailHeartWrapper}>
                     <TouchableOpacity onPress={() => prepniOblibene(item.id)} style={styles.detailHeartIconBtn}>
-                      <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={28} color="black" />
+                      <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={28} color={THEME.colors.textHlavni} />
                     </TouchableOpacity>
                     {item.pocetOblibenych > 0 && (
                       <Text style={styles.detailHeartCount}>{item.pocetOblibenych}</Text>
@@ -286,14 +289,17 @@ export default function EventDetail({
                   )}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity onPress={() => stahniKalendar(item)} style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#E0E7FF', justifyContent: 'center', alignItems: 'center', marginLeft: 10 }} activeOpacity={0.6}>
-                    <Ionicons name="calendar-outline" size={16} color={themeColor} />
+                  
+                  {/* 🎨 NAPOJENÉ IKONY KALENDÁŘE A SDÍLENÍ (MOBIL) */}
+                  <TouchableOpacity onPress={() => stahniKalendar(item)} style={styles.iconButton} activeOpacity={0.6}>
+                    <Ionicons name="calendar-outline" size={16} color={THEME.colors.tlacitkoText} />
                   </TouchableOpacity>
                   
-                  <TouchableOpacity onPress={() => sdiletAkci(item)} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#E0E7FF', paddingVertical: 5, paddingHorizontal: 12, borderRadius: 15, marginLeft: 8 }} activeOpacity={0.6}>
-                    <Ionicons name="share-social-outline" size={16} color={themeColor} />
-                    <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 12, marginLeft: 5, color: themeColor, fontWeight: 'bold' }}>Sdílet</Text>
+                  <TouchableOpacity onPress={() => sdiletAkci(item)} style={[styles.actionButton, { marginLeft: 8 }]} activeOpacity={0.6}>
+                    <Ionicons name="share-social-outline" size={16} color={THEME.colors.tlacitkoText} />
+                    <Text style={styles.actionButtonText}>Sdílet</Text>
                   </TouchableOpacity>
+
                 </View>
               </View>
 
@@ -342,7 +348,7 @@ export default function EventDetail({
                 </View>
                 <View style={styles.detailHeartWrapper}>
                   <TouchableOpacity onPress={() => prepniOblibene(item.id)} style={styles.detailHeartIconBtn}>
-                    <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={28} color="black" />
+                    <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={28} color={THEME.colors.textHlavni} />
                   </TouchableOpacity>
                   {item.pocetOblibenych > 0 && (
                     <Text style={styles.detailHeartCount}>{item.pocetOblibenych}</Text>
@@ -354,7 +360,7 @@ export default function EventDetail({
                 if (!h.fotka && h.popis === '' && h.profese === '') return null;
                 return (
                   <View key={idx} style={{ width: '100%', marginBottom: 25 }}>
-                    <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 15, color: '#000000', marginBottom: 10, fontWeight: 'bold' }}>
+                    <Text style={{ fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textHlavni, marginBottom: 10, fontWeight: 'bold' }}>
                       {h.role}
                     </Text>
                     <TouchableOpacity style={styles.mobileSpeakerTrigger} onPress={() => { setAktivniSelectedSpeaker(h); setSpeakerModalVisible(true); }} activeOpacity={0.7}>
@@ -363,7 +369,7 @@ export default function EventDetail({
                       </View>
                       <View style={{ flex: 1, paddingLeft: 15, justifyContent: 'center' }}>
                         <Text style={styles.speakerName}>{h.jmeno}</Text>
-                        <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 13, color: themeColor, fontWeight: 'bold', marginTop: 4 }}>
+                        <Text style={{ fontFamily: THEME.fonts.regular, fontSize: 13, color: themeColor, fontWeight: 'bold', marginTop: 4 }}>
                           Zobrazit více
                         </Text>
                       </View>
@@ -378,7 +384,7 @@ export default function EventDetail({
                   
                   {(maRezervaci || rezervaceOdeslana) && !chciDalsiRezervaci ? (
                     <View style={{ backgroundColor: '#ECFDF5', padding: 15, borderRadius: 8, borderWidth: 1, borderColor: '#10B981' }}>
-                       <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 16, color: '#065F46', textAlign: 'center', fontWeight: 'bold' }}>
+                       <Text style={{ fontFamily: THEME.fonts.regular, fontSize: 16, color: '#065F46', textAlign: 'center', fontWeight: 'bold' }}>
                          Na tuto akci máte úspěšně zajištěnou rezervaci.
                        </Text>
                        {!jePlno && (
@@ -389,13 +395,13 @@ export default function EventDetail({
                              setRezervaceJmeno(''); 
                            }}
                          >
-                           <Text style={{ color: 'white', fontFamily: 'Inter_400Regular', fontSize: 13, fontWeight: 'bold' }}>Vytvořit další rezervaci</Text>
+                           <Text style={{ color: 'white', fontFamily: THEME.fonts.regular, fontSize: 13, fontWeight: 'bold' }}>Vytvořit další rezervaci</Text>
                          </TouchableOpacity>
                        )}
                     </View>
                   ) : jePlno ? (
                     <View style={{ backgroundColor: '#F3F4F6', padding: 15, borderRadius: 8 }}>
-                       <Text style={{ fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563', textAlign: 'center' }}>
+                       <Text style={{ fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, textAlign: 'center' }}>
                          Kapacita této akce již byla naplněna.
                        </Text>
                     </View>
@@ -431,7 +437,7 @@ export default function EventDetail({
 
                       {chciDalsiRezervaci && (
                         <TouchableOpacity onPress={() => setChciDalsiRezervaci(false)} style={{marginTop: 15, alignSelf: 'center'}}>
-                          <Text style={{color: '#6B7280', fontFamily: 'Inter_400Regular', fontSize: 14}}>Zrušit zadávání další rezervace</Text>
+                          <Text style={{color: THEME.colors.textDoplnkovy, fontFamily: THEME.fonts.regular, fontSize: 14}}>Zrušit zadávání další rezervace</Text>
                         </TouchableOpacity>
                       )}
                     </>
@@ -453,63 +459,105 @@ const styles = StyleSheet.create({
   content: { flex: 1, paddingHorizontal: 15 },
   desktopDetailScrollView: { flex: 1, width: '100%', maxWidth: 1270, alignSelf: 'center', paddingHorizontal: 15 },
   desktopBreadcrumbsContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 20, marginBottom: 20 },
-  desktopBreadcrumbLink: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#6B7280' },
-  desktopBreadcrumbText: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#000000' },
+  desktopBreadcrumbLink: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  desktopBreadcrumbText: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textHlavni },
   backBtn: { flexDirection: 'row', alignItems: 'center', marginTop: 20, marginBottom: 15, alignSelf: 'flex-start' },
-  backBtnText: { fontFamily: 'Inter_400Regular', fontSize: 16, marginLeft: 5 },
+  backBtnText: { fontFamily: THEME.fonts.regular, fontSize: 16, marginLeft: 5 },
   desktopDetailLayout: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%' },
-  desktopDetailCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 30, marginBottom: 20, ...Platform.select({ web: { boxShadow: '0px 2px 6px rgba(0,0,0,0.05)' }, default: { elevation: 2 } }) },
+  
+  // Napojeno pozadí karty akce
+  desktopDetailCard: { backgroundColor: THEME.colors.kartaAkcePozadi, borderRadius: 16, padding: 30, marginBottom: 20, ...Platform.select({ web: { boxShadow: '0px 2px 6px rgba(0,0,0,0.05)' }, default: { elevation: 2 } }) },
   desktopTimeLocationRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
-  desktopCardTime: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#4B5563' },
-  desktopDetailMainTitle: { fontFamily: 'Inter_400Regular', fontSize: 32, color: '#000000', fontWeight: 'bold', marginBottom: 10, lineHeight: 38 },
-  desktopDetailHost: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#000000', marginBottom: 25 },
-  desktopDetailDescription: { fontFamily: 'Inter_400Regular', fontSize: 18, color: '#000000', lineHeight: 28, marginBottom: 30 },
+  desktopCardTime: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy },
+  desktopDetailMainTitle: { fontFamily: THEME.fonts.regular, fontSize: 32, color: THEME.colors.textHlavni, fontWeight: 'bold', marginBottom: 10, lineHeight: 38 },
+  desktopDetailHost: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textHlavni, marginBottom: 25 },
+  desktopDetailDescription: { fontFamily: THEME.fonts.regular, fontSize: 18, color: THEME.colors.textHlavni, lineHeight: 28, marginBottom: 30 },
   detailTagsWrapper: { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 25 },
   tagsContainer: { flexDirection: 'row', flexWrap: 'wrap', flex: 1, paddingRight: 10 },
   detailTagPill: { alignSelf: 'flex-start', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 18, marginRight: 8, marginTop: 8, borderWidth: 1 },
-  detailTagText: { fontFamily: 'Inter_400Regular', color: 'white', fontSize: 13, fontWeight: '600' },
+  detailTagText: { fontFamily: THEME.fonts.regular, color: 'white', fontSize: 13, fontWeight: '600' },
   detailTagPillOutline: { backgroundColor: 'transparent', alignSelf: 'flex-start', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 18, marginRight: 8, marginTop: 8, borderWidth: 1 },
-  detailTagTextOutline: { fontFamily: 'Inter_400Regular', fontSize: 13, fontWeight: '600' },
+  detailTagTextOutline: { fontFamily: THEME.fonts.regular, fontSize: 13, fontWeight: '600' },
   tagPillRezervovano: { backgroundColor: 'transparent', borderColor: '#10B981' },
   tagTextRezervovano: { color: '#10B981' },
   tagPillPlno: { backgroundColor: '#D1D5DB', borderColor: '#D1D5DB' },
-  tagTextPlno: { color: '#4B5563' },
-  capacityText: { fontFamily: 'Inter_400Regular', fontSize: 15, color: '#4B5563' },
-  capacityBold: { fontWeight: 'bold', color: '#000000' },
-  capacityLight: { color: '#6B7280' },
-  formTitle: { fontFamily: 'Inter_400Regular', fontSize: 18, marginBottom: 15, color: '#111827', fontWeight: 'bold' },
-  input: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 12, marginBottom: 12, fontFamily: 'Inter_400Regular', fontSize: 14, color: '#111827', backgroundColor: '#F9FAFB' },
+  tagTextPlno: { color: THEME.colors.textDoplnkovy },
+  capacityText: { fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textDoplnkovy },
+  capacityBold: { fontWeight: 'bold', color: THEME.colors.textHlavni },
+  capacityLight: { color: THEME.colors.textDoplnkovy },
+  formTitle: { fontFamily: THEME.fonts.regular, fontSize: 18, marginBottom: 15, color: THEME.colors.textHlavni, fontWeight: 'bold' },
+  input: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 12, marginBottom: 12, fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textHlavni, backgroundColor: '#F9FAFB' },
   submitBtn: { padding: 14, borderRadius: 8, alignItems: 'center', marginTop: 5 },
-  submitBtnText: { color: 'white', fontFamily: 'Inter_400Regular', fontSize: 14, fontWeight: 'bold' },
-  errorText: { color: '#EF4444', fontFamily: 'Inter_400Regular', fontSize: 13, marginBottom: 12, lineHeight: 18 },
+  submitBtnText: { color: 'white', fontFamily: THEME.fonts.regular, fontSize: 14, fontWeight: 'bold' },
+  errorText: { color: '#EF4444', fontFamily: THEME.fonts.regular, fontSize: 13, marginBottom: 12, lineHeight: 18 },
   desktopDetailRightColumn: { flex: 1, flexDirection: 'column', alignItems: 'flex-end' },
   desktopDetailImage: { width: '100%', aspectRatio: 1.5, borderRadius: 16, marginBottom: 15 },
-  speakerCard: { backgroundColor: '#FFFFFF', borderRadius: 12, flexDirection: 'row', overflow: 'hidden', borderWidth: 1, borderColor: '#E5E7EB', minHeight: 220 },
+  
+  // Napojeno pozadí a okraj vizitky řečníka
+  speakerCard: { backgroundColor: THEME.colors.kartaAkcePozadi, borderRadius: 12, flexDirection: 'row', overflow: 'hidden', borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, minHeight: 220 },
   speakerImageContainer: { width: 200 },
   speakerImage: { width: '100%', height: '100%' },
   speakerInfo: { flex: 1, padding: 25, justifyContent: 'flex-start' },
-  speakerName: { fontFamily: 'Inter_400Regular', fontSize: 18, fontWeight: 'bold', color: '#000000', marginBottom: 4 },
-  speakerJob: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#6B7280', marginBottom: 8 },
-  speakerDesc: { fontFamily: 'Inter_400Regular', fontSize: 15, color: '#374151', lineHeight: 22 },
+  speakerName: { fontFamily: THEME.fonts.regular, fontSize: 18, fontWeight: 'bold', color: THEME.colors.textHlavni, marginBottom: 4 },
+  speakerJob: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, marginBottom: 8 },
+  speakerDesc: { fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textDoplnkovy, lineHeight: 22 },
   desktopDetailBottomActions: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' },
   detailHeartWrapper: { alignItems: 'center', minWidth: 40 },
   detailHeartIconBtn: { justifyContent: 'center', alignItems: 'center' },
-  detailHeartCount: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#4B5563', marginTop: 4 },
+  detailHeartCount: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy, marginTop: 4 },
   detailTitleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 },
-  detailMainTitle: { flex: 1, fontFamily: 'Inter_400Regular', fontSize: 26, fontWeight: 'bold', color: '#111827', lineHeight: 32 },
-  detailHost: { fontFamily: 'Inter_400Regular', fontSize: 18, color: '#374151', marginBottom: 15, marginTop: -5 },
+  detailMainTitle: { flex: 1, fontFamily: THEME.fonts.regular, fontSize: 26, fontWeight: 'bold', color: THEME.colors.textHlavni, lineHeight: 32 },
+  detailHost: { fontFamily: THEME.fonts.regular, fontSize: 18, color: THEME.colors.textDoplnkovy, marginBottom: 15, marginTop: -5 },
   detailTimeLocationRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 15, flexWrap: 'wrap' },
-  cardTime: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563' },
-  locationLink: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563' },
-  wireframeImage: { width: '100%', height: 200, backgroundColor: '#E5E7EB', borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 20, overflow: 'hidden' },
-  detailDescription: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#374151', lineHeight: 24, marginBottom: 15 },
+  cardTime: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  locationLink: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  wireframeImage: { width: '100%', height: 200, backgroundColor: THEME.colors.kartaAkceOhraniceni, borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 20, overflow: 'hidden' },
+  detailDescription: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, lineHeight: 24, marginBottom: 15 },
   tagPill: { alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagText: { fontFamily: 'Inter_400Regular', color: 'white', fontSize: 11, fontWeight: '600' },
+  tagText: { fontFamily: THEME.fonts.regular, color: 'white', fontSize: 11, fontWeight: '600' },
   tagPillOutline: { backgroundColor: 'transparent', alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagTextOutline: { fontFamily: 'Inter_400Regular', fontSize: 11, fontWeight: '600' },
+  tagTextOutline: { fontFamily: THEME.fonts.regular, fontSize: 11, fontWeight: '600' },
   detailBottomRowInfo: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 30 },
   detailCapacityWrapper: { flex: 1, justifyContent: 'flex-start', paddingTop: 4 },
-  mobileSpeakerTrigger: { flexDirection: 'row', backgroundColor: '#FFFFFF', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: '#E5E7EB', alignItems: 'center' },
+  
+  // Mobilní vizitka řečníka napojena
+  mobileSpeakerTrigger: { flexDirection: 'row', backgroundColor: THEME.colors.kartaAkcePozadi, borderRadius: 12, padding: 12, borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, alignItems: 'center' },
   mobileSpeakerTriggerAvatar: { width: 60, height: 60, borderRadius: 30, overflow: 'hidden' },
-  formContainer: { backgroundColor: '#fff', padding: 20, borderRadius: 10, marginBottom: 30, borderWidth: 1, borderColor: '#E5E7EB', ...Platform.select({ web: { boxShadow: '0px 1px 2px rgba(0,0,0,0.05)' }, default: { elevation: 1 }}) }
+  formContainer: { backgroundColor: '#fff', padding: 20, borderRadius: 10, marginBottom: 30, borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, ...Platform.select({ web: { boxShadow: '0px 1px 2px rgba(0,0,0,0.05)' }, default: { elevation: 1 }}) },
+
+  // 👇 TADY JSOU NOVÉ, SDÍLENÉ STYLY PRO TLAČÍTKA A IKONY (SDÍLET, KALENDÁŘ) 👇
+  // Obsahují poznámky k úpravě ohraničení přímo z tvého manuálu
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: THEME.colors.tlacitkoVypln,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    borderRadius: THEME.borders.radiusTlacitka,
+    // Manuál k ohraničení (Border):
+    // 1. Viditelný: necháš borderWidth a borderColor nastavené (viz níže)
+    // 2. Neviditelný, ale stejná velikost: borderColor: 'transparent'
+    // 3. Úplně bez okraje: borderWidth: 0
+    borderWidth: THEME.borders.tloustkaTlacitka,
+    borderColor: THEME.colors.tlacitkoOhraniceni,
+  },
+  actionButtonText: {
+    fontFamily: THEME.fonts.medium,
+    fontSize: 12,
+    marginLeft: 5,
+    color: THEME.colors.tlacitkoText,
+    fontWeight: 'bold'
+  },
+  iconButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15, // Kulaté tlačítko pro kalendář
+    backgroundColor: THEME.colors.tlacitkoVypln,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    // Manuál k ohraničení zde platí úplně stejně
+    borderWidth: THEME.borders.tloustkaTlacitka,
+    borderColor: THEME.colors.tlacitkoOhraniceni,
+  }
 });

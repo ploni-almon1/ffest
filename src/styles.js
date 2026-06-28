@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
+import { THEME } from '../theme'; // 🎨 Import centrálního vzorníku
 
 export const styles = StyleSheet.create({
   homeHeroContainer: {
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent', 
   },
   homeHeroBtnText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
     fontWeight: 'bold',
     letterSpacing: 1.5,
@@ -37,38 +38,38 @@ export const styles = StyleSheet.create({
     paddingTop: 60,
   },
   homeSectionTitle: {
-    fontFamily: 'Inter_400Regular',
-    fontSize: 32,
+    fontFamily: THEME.fonts.regular,
+    fontSize: THEME.fontSizes.velkyNadpis,
     letterSpacing: 1,
     marginBottom: 20,
-    color: '#000',
+    color: THEME.colors.textHlavni,
   },
   homeText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
-    color: '#333',
+    color: THEME.colors.textHlavni,
     lineHeight: 28,
   },
 
   desktopCardImage: {
     width: '100%',
     aspectRatio: 1.5, 
-    borderTopLeftRadius: 10, 
-    borderTopRightRadius: 10, 
-    backgroundColor: '#E5E7EB'
+    borderTopLeftRadius: THEME.borders.radiusKartyAkce, 
+    borderTopRightRadius: THEME.borders.radiusKartyAkce, 
+    backgroundColor: THEME.colors.kartaAkceOhraniceni
   },
 
   detailTagPill: {
     alignSelf: 'flex-start', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 18, marginRight: 8, marginTop: 8, borderWidth: 1
   },
   detailTagText: {
-    fontFamily: 'Inter_400Regular', color: 'white', fontSize: 13, fontWeight: '600'
+    fontFamily: THEME.fonts.regular, color: 'white', fontSize: 13, fontWeight: '600'
   },
   detailTagPillOutline: {
     backgroundColor: 'transparent', alignSelf: 'flex-start', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 18, marginRight: 8, marginTop: 8, borderWidth: 1
   },
   detailTagTextOutline: {
-    fontFamily: 'Inter_400Regular', fontSize: 13, fontWeight: '600'
+    fontFamily: THEME.fonts.regular, fontSize: 13, fontWeight: '600'
   },
 
   desktopDetailScrollView: {
@@ -85,14 +86,14 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   desktopBreadcrumbLink: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#6B7280', 
+    color: THEME.colors.textDoplnkovy, 
   },
   desktopBreadcrumbText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#000000',
+    color: THEME.colors.textHlavni,
   },
   desktopDetailLayout: {
     flexDirection: 'row',
@@ -102,12 +103,12 @@ export const styles = StyleSheet.create({
   },
   
   desktopDetailCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     padding: 30,
     marginBottom: 20, 
     ...Platform.select({
-      web: { boxShadow: '0px 2px 6px rgba(0,0,0,0.05)' },
+      web: { boxShadow: `0px 2px 6px ${THEME.colors.kartaAkceStín}` },
       default: { elevation: 2 }
     })
   },
@@ -118,28 +119,28 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   desktopCardTime: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#4B5563',
+    color: THEME.colors.textDoplnkovy,
   },
   desktopDetailMainTitle: {
-    fontFamily: 'Inter_400Regular', 
-    fontSize: 32, 
-    color: '#000000', 
+    fontFamily: THEME.fonts.regular, 
+    fontSize: THEME.fontSizes.velkyNadpis, 
+    color: THEME.colors.textHlavni, 
     fontWeight: 'bold',
     marginBottom: 10,
     lineHeight: 38,
   },
   desktopDetailHost: {
-    fontFamily: 'Inter_400Regular', 
+    fontFamily: THEME.fonts.regular, 
     fontSize: 16, 
-    color: '#000000', 
+    color: THEME.colors.textHlavni, 
     marginBottom: 25,
   },
   desktopDetailDescription: {
-    fontFamily: 'Inter_400Regular', 
+    fontFamily: THEME.fonts.regular, 
     fontSize: 18, 
-    color: '#000000', 
+    color: THEME.colors.textHlavni, 
     lineHeight: 28, 
     marginBottom: 30,
   },
@@ -172,16 +173,16 @@ export const styles = StyleSheet.create({
     paddingTop: 4, 
   },
   capacityText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#4B5563',
+    color: THEME.colors.textDoplnkovy,
   },
   capacityBold: {
     fontWeight: 'bold',
-    color: '#000000',
+    color: THEME.colors.textHlavni,
   },
   capacityLight: {
-    color: '#6B7280',
+    color: THEME.colors.textDoplnkovy,
   },
   detailHeartWrapper: {
     alignItems: 'center',
@@ -192,9 +193,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   detailHeartCount: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#4B5563',
+    color: THEME.colors.textDoplnkovy,
     marginTop: 4,
   },
 
@@ -204,9 +205,9 @@ export const styles = StyleSheet.create({
     marginLeft: 15,
   },
   desktopHeaderFavCount: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
-    color: '#000000',
+    color: THEME.colors.textHlavni,
     marginLeft: 6, 
   },
 
@@ -228,13 +229,13 @@ export const styles = StyleSheet.create({
   desktopHeader: { 
     height: 55,
     width: '100%',
-    backgroundColor: '#FFFFFF', 
+    backgroundColor: THEME.colors.pozadiHlavicky, 
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 15,
     zIndex: 50,
     ...Platform.select({
-      web: { boxShadow: '0px 4px 12px rgba(0,0,0,0.08)' },
+      web: { boxShadow: `0px 4px 12px ${THEME.colors.kartaAkceStín}` },
       default: { elevation: 4 }
     })
   },
@@ -257,9 +258,9 @@ export const styles = StyleSheet.create({
     gap: 25,
   },
   desktopMenuText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#000000',
+    color: THEME.colors.textHlavickyAktivni,
     letterSpacing: 0.5,
   },
   
@@ -267,13 +268,13 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: '100%',
     left: -15,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.pozadiHlavicky,
     minWidth: 150,
     borderRadius: 8,
     paddingVertical: 8,
     zIndex: 100,
     ...Platform.select({
-      web: { boxShadow: '0px 4px 15px rgba(0,0,0,0.15)' },
+      web: { boxShadow: `0px 4px 15px ${THEME.colors.kartaAkceStín}` },
       default: { elevation: 5 }
     })
   },
@@ -282,9 +283,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   dropdownItemText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#6B7280',
+    color: THEME.colors.textHlavickyPasivni,
   },
 
   desktopContainer: {
@@ -295,26 +296,26 @@ export const styles = StyleSheet.create({
   },
 
   mainContainer: { flex: 1 }, 
-  container: { flex: 1, backgroundColor: '#F3F4F6' },
+  container: { flex: 1, backgroundColor: THEME.colors.pozadiAplikace },
   
   header: { 
     height: 60,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#FFFFFF', 
+    backgroundColor: THEME.colors.pozadiHlavicky, 
     paddingHorizontal: 15, 
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: THEME.colors.kartaAkceOhraniceni,
   },
   headerLogo: { width: 36, height: 36, marginRight: 10, resizeMode: 'contain' },
-  headerText: { fontFamily: 'Inter_400Regular', color: '#000000', fontSize: 22, includeFontPadding: false },
+  headerText: { fontFamily: THEME.fonts.regular, color: THEME.colors.textHlavickyAktivni, fontSize: 22, includeFontPadding: false },
   
   content: { flex: 1, paddingHorizontal: 15 },
   mapTabContainer: { flex: 1, paddingHorizontal: 15 },
 
   pageTitleContainer: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, marginBottom: 15 },
-  pageTitle: { fontFamily: 'Inter_400Regular', fontSize: 32, letterSpacing: 1 },
+  pageTitle: { fontFamily: THEME.fonts.regular, fontSize: THEME.fontSizes.velkyNadpis, letterSpacing: 1 },
 
   toggleViewBtn: {
     width: 44,
@@ -324,97 +325,97 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
-  favoriteDayHeader: { fontFamily: 'Inter_400Regular', fontSize: 20, color: '#000', marginBottom: 15, marginTop: 0 }, 
+  favoriteDayHeader: { fontFamily: THEME.fonts.regular, fontSize: 20, color: THEME.colors.textHlavni, marginBottom: 15, marginTop: 0 }, 
   
   webMap: { flex: 1, width: '100%', borderRadius: 15, marginBottom: 15, borderWidth: 0, minHeight: 350 },
   daysContainer: { flexDirection: 'row', marginBottom: 20 },
-  dayPill: { height: 29, paddingHorizontal: 12, borderRadius: 16, borderWidth: 1, marginRight: 8, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' },
-  dayText: { fontFamily: 'Inter_400Regular', fontSize: 13 },
-  dayTextActive: { fontFamily: 'Inter_400Regular', color: 'white' },
+  dayPill: { height: 29, paddingHorizontal: 12, borderRadius: THEME.borders.radiusDny, borderWidth: THEME.borders.tloustkaDny, marginRight: 8, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' },
+  dayText: { fontFamily: THEME.fonts.regular, fontSize: 13 },
+  dayTextActive: { fontFamily: THEME.fonts.regular, color: 'white' },
   
   desktopDaysContainer: { marginBottom: 30 },
   desktopDayPill: { width: 86, height: 36, borderRadius: 18, marginRight: 16, paddingVertical: 0, paddingHorizontal: 0 },
   desktopDayText: { fontSize: 14 },
   
   card: { 
-    backgroundColor: '#FFFFFF', 
-    borderRadius: 10, 
+    backgroundColor: THEME.colors.kartaAkcePozadi, 
+    borderRadius: THEME.borders.radiusKartyAkce, 
     marginBottom: 0, 
     ...Platform.select({
-      web: { boxShadow: '0px 4px 8px rgba(0,0,0,0.12)' },
+      web: { boxShadow: `0px 4px 8px ${THEME.colors.kartaAkceStín}` },
       default: { elevation: 5 }
     })
   },
   cardContent: { padding: 15 },
-  cardImage: { width: '100%', height: 160, borderTopLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: '#E5E7EB' },
+  cardImage: { width: '100%', height: 160, borderTopLeftRadius: THEME.borders.radiusKartyAkce, borderTopRightRadius: THEME.borders.radiusKartyAkce, backgroundColor: THEME.colors.kartaAkceOhraniceni },
   
   timeLocationRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 5, flexWrap: 'wrap' },
-  cardTime: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563' },
-  locationLink: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563' },
-  cardTitle: { fontFamily: 'Inter_400Regular', fontSize: 16, fontWeight: 'bold', marginBottom: 10, color: '#111827' },
-  cardHost: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#374151', marginBottom: 10 },
+  cardTime: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  locationLink: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  cardTitle: { fontFamily: THEME.fonts.regular, fontSize: 16, fontWeight: 'bold', marginBottom: 10, color: THEME.colors.textHlavni },
+  cardHost: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy, marginBottom: 10 },
   cardBottomRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' },
   tagsContainer: { flexDirection: 'row', flexWrap: 'wrap', flex: 1, paddingRight: 10 },
   
   tagPill: { alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagText: { fontFamily: 'Inter_400Regular', color: 'white', fontSize: 11, fontWeight: '600' },
+  tagText: { fontFamily: THEME.fonts.regular, color: 'white', fontSize: 11, fontWeight: '600' },
   
   tagPillOutline: { backgroundColor: 'transparent', alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagTextOutline: { fontFamily: 'Inter_400Regular', fontSize: 11, fontWeight: '600' },
+  tagTextOutline: { fontFamily: THEME.fonts.regular, fontSize: 11, fontWeight: '600' },
   
-  tagPillRezervovano: { backgroundColor: 'transparent', borderColor: '#10B981' },
-  tagTextRezervovano: { color: '#10B981' },
-  tagPillPlno: { backgroundColor: '#D1D5DB', borderColor: '#D1D5DB' },
-  tagTextPlno: { color: '#4B5563' },
+  tagPillRezervovano: { backgroundColor: 'transparent', borderColor: '#10B981' }, // Zelená nechána úmyslně
+  tagTextRezervovano: { color: '#10B981' }, // Zelená nechána úmyslně
+  tagPillPlno: { backgroundColor: THEME.colors.kartaAkceOhraniceni, borderColor: THEME.colors.kartaAkceOhraniceni },
+  tagTextPlno: { color: THEME.colors.textDoplnkovy },
 
   heartIconBtn: { paddingBottom: 0, paddingLeft: 10, marginBottom: -4 },
-  emptyText: { fontFamily: 'Inter_400Regular', color: '#6B7280', textAlign: 'center', marginTop: 30, lineHeight: 22 },
+  emptyText: { fontFamily: THEME.fonts.regular, color: THEME.colors.textDoplnkovy, textAlign: 'center', marginTop: 30, lineHeight: 22 },
   
   backBtn: { flexDirection: 'row', alignItems: 'center', marginTop: 20, marginBottom: 15, alignSelf: 'flex-start' },
-  backBtnText: { fontFamily: 'Inter_400Regular', fontSize: 16, marginLeft: 5 },
+  backBtnText: { fontFamily: THEME.fonts.regular, fontSize: 16, marginLeft: 5 },
   
   detailTitleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 },
-  detailMainTitle: { flex: 1, fontFamily: 'Inter_400Regular', fontSize: 26, fontWeight: 'bold', color: '#111827', lineHeight: 32 },
+  detailMainTitle: { flex: 1, fontFamily: THEME.fonts.regular, fontSize: 26, fontWeight: 'bold', color: THEME.colors.textHlavni, lineHeight: 32 },
   
-  detailHost: { fontFamily: 'Inter_400Regular', fontSize: 18, color: '#374151', marginBottom: 15, marginTop: -5 },
+  detailHost: { fontFamily: THEME.fonts.regular, fontSize: 18, color: THEME.colors.textDoplnkovy, marginBottom: 15, marginTop: -5 },
   
   detailTimeLocationRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 15, flexWrap: 'wrap' },
-  wireframeImage: { width: '100%', height: 200, backgroundColor: '#E5E7EB', borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 20, overflow: 'hidden' },
-  wireframeText: { fontFamily: 'Inter_400Regular', color: '#9CA3AF', marginTop: 10 },
-  detailDescription: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#374151', lineHeight: 24, marginBottom: 15 },
+  wireframeImage: { width: '100%', height: 200, backgroundColor: THEME.colors.kartaAkceOhraniceni, borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginBottom: 20, overflow: 'hidden' },
+  wireframeText: { fontFamily: THEME.fonts.regular, color: THEME.colors.textDoplnkovy, marginTop: 10 },
+  detailDescription: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, lineHeight: 24, marginBottom: 15 },
   
   detailTagsWrapper: { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 25 },
   
-  formContainer: { backgroundColor: '#fff', padding: 20, borderRadius: 10, marginBottom: 30, borderWidth: 1, borderColor: '#E5E7EB', ...Platform.select({ web: { boxShadow: '0px 1px 2px rgba(0,0,0,0.05)' }, default: { elevation: 1 }}) },
-  formTitle: { fontFamily: 'Inter_400Regular', fontSize: 18, marginBottom: 15, color: '#111827', fontWeight: 'bold' },
-  input: { borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 12, marginBottom: 12, fontFamily: 'Inter_400Regular', fontSize: 14, color: '#111827', backgroundColor: '#F9FAFB' },
+  formContainer: { backgroundColor: THEME.colors.kartaAkcePozadi, padding: 20, borderRadius: 10, marginBottom: 30, borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, ...Platform.select({ web: { boxShadow: `0px 1px 2px ${THEME.colors.kartaAkceStín}` }, default: { elevation: 1 }}) },
+  formTitle: { fontFamily: THEME.fonts.regular, fontSize: 18, marginBottom: 15, color: THEME.colors.textHlavni, fontWeight: 'bold' },
+  input: { borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, borderRadius: 8, padding: 12, marginBottom: 12, fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textHlavni, backgroundColor: '#F9FAFB' },
   submitBtn: { padding: 14, borderRadius: 8, alignItems: 'center', marginTop: 5 },
-  submitBtnText: { color: 'white', fontFamily: 'Inter_400Regular', fontSize: 14, fontWeight: 'bold' },
-  successText: { color: '#10B981', fontFamily: 'Inter_400Regular', fontSize: 15, textAlign: 'center', marginVertical: 10, fontWeight: 'bold' },
-  errorText: { color: '#EF4444', fontFamily: 'Inter_400Regular', fontSize: 13, marginBottom: 12, lineHeight: 18 }, 
+  submitBtnText: { color: 'white', fontFamily: THEME.fonts.regular, fontSize: 14, fontWeight: 'bold' },
+  successText: { color: '#10B981', fontFamily: THEME.fonts.regular, fontSize: 15, textAlign: 'center', marginVertical: 10, fontWeight: 'bold' },
+  errorText: { color: '#EF4444', fontFamily: THEME.fonts.regular, fontSize: 13, marginBottom: 12, lineHeight: 18 }, 
 
   dalsiContainer: { paddingTop: 20, paddingBottom: 40 },
-  dalsiHlavniNadpis: { fontFamily: 'Inter_400Regular', fontSize: 32, letterSpacing: 1, color: '#000', marginBottom: 30, lineHeight: 38 },
+  dalsiHlavniNadpis: { fontFamily: THEME.fonts.regular, fontSize: THEME.fontSizes.velkyNadpis, letterSpacing: 1, color: THEME.colors.textHlavni, marginBottom: 30, lineHeight: 38 },
   menuList: { marginBottom: 30 },
   menuItemWrapper: { marginBottom: 15 },
   menuItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 5 },
-  menuItemText: { fontFamily: 'Inter_400Regular', fontSize: 20, color: '#000' },
+  menuItemText: { fontFamily: THEME.fonts.regular, fontSize: 20, color: THEME.colors.textHlavni },
   menuExpandedContent: { marginTop: 10, paddingLeft: 10, borderLeftWidth: 2 },
-  menuExpandedText: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563', lineHeight: 22 },
+  menuExpandedText: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, lineHeight: 22 },
   contentLinkRow: { paddingVertical: 6, paddingLeft: 5 },
-  contentInlineLink: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#4B5563' },
+  contentInlineLink: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy },
   
   socialContainer: { flexDirection: 'row', gap: 15, marginTop: 10 },
-  socialCircleBtn: { width: 36, height: 36, borderRadius: 18, backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' },
+  socialCircleBtn: { width: 36, height: 36, borderRadius: 18, backgroundColor: THEME.colors.textHlavni, justifyContent: 'center', alignItems: 'center' },
   customSocialIcon: { width: 36, height: 36, borderRadius: 18, resizeMode: 'cover' },
   customFacebookIconImg: { width: 36, height: 36, borderRadius: 18, resizeMode: 'cover' },
   
-  colorPickerContainer: { marginTop: 25, padding: 15, backgroundColor: 'white', borderRadius: 10, borderWidth: 1, borderColor: '#D1D5DB' },
-  colorPickerTitle: { fontFamily: 'Inter_400Regular', fontSize: 16, marginBottom: 10, color: '#111827', fontWeight: 'bold' },
+  colorPickerContainer: { marginTop: 25, padding: 15, backgroundColor: THEME.colors.kartaAkcePozadi, borderRadius: 10, borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni },
+  colorPickerTitle: { fontFamily: THEME.fonts.regular, fontSize: 16, marginBottom: 10, color: THEME.colors.textHlavni, fontWeight: 'bold' },
 
-  bottomNav: { flexDirection: 'row', justifyContent: 'space-evenly', backgroundColor: 'white', borderTopWidth: 1, borderColor: '#E5E7EB', height: Platform.OS === 'web' ? 60 : 'auto', alignItems: Platform.OS === 'web' ? 'center' : 'stretch', paddingTop: Platform.OS === 'web' ? 0 : 10, paddingBottom: Platform.OS === 'web' ? 0 : (Platform.OS === 'android' ? 50 : 40) },
+  bottomNav: { flexDirection: 'row', justifyContent: 'space-evenly', backgroundColor: THEME.colors.pozadiSpodniListy, borderTopWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, height: Platform.OS === 'web' ? 60 : 'auto', alignItems: Platform.OS === 'web' ? 'center' : 'stretch', paddingTop: Platform.OS === 'web' ? 0 : 10, paddingBottom: Platform.OS === 'web' ? 0 : (Platform.OS === 'android' ? 50 : 40) },
   navItem: { flex: 1, alignItems: 'center', justifyContent: Platform.OS === 'web' ? 'center' : 'flex-start' },
-  navText: { fontFamily: 'Inter_400Regular', fontSize: 10, marginTop: Platform.OS === 'web' ? 2 : 4 },
+  navText: { fontFamily: THEME.fonts.regular, fontSize: 10, marginTop: Platform.OS === 'web' ? 2 : 4 },
 
   modalOverlay: {
     flex: 1,
@@ -424,7 +425,7 @@ export const styles = StyleSheet.create({
     padding: 20
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     padding: 25,
     width: '85%',
@@ -440,17 +441,17 @@ export const styles = StyleSheet.create({
     zIndex: 10
   },
   modalTitle: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 12,
-    color: '#111827',
+    color: THEME.colors.textHlavni,
     textAlign: 'center'
   },
   modalText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#4B5563',
+    color: THEME.colors.textDoplnkovy,
     textAlign: 'center',
     lineHeight: 22
   },
@@ -467,18 +468,18 @@ export const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 900,
     height: '80%',
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     position: 'relative',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     ...Platform.select({ web: { boxShadow: '0px 10px 40px rgba(0,0,0,0.15)' }, default: { elevation: 10 } })
   },
   mapModalCloseBtn: {
     position: 'absolute',
     top: 15,
     right: 15,
-    backgroundColor: 'white',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -491,14 +492,14 @@ export const styles = StyleSheet.create({
   listCardImageDesktop: {
     width: 360,
     height: 270,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    backgroundColor: '#E5E7EB'
+    borderTopLeftRadius: THEME.borders.radiusKartyAkce,
+    borderBottomLeftRadius: THEME.borders.radiusKartyAkce,
+    backgroundColor: THEME.colors.kartaAkceOhraniceni
   },
   listAnnotation: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#4B5563',
+    color: THEME.colors.textDoplnkovy,
     lineHeight: 22,
     marginTop: 10,
     marginBottom: 15,
@@ -530,7 +531,7 @@ export const styles = StyleSheet.create({
     marginRight: 15,
   },
   footerTitleText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
     color: '#FFFFFF',
     lineHeight: 20,
@@ -540,13 +541,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   footerLabel: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
     color: '#FFFFFF',
     marginBottom: 5,
   },
   footerText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
     color: '#FFFFFF',
     lineHeight: 22,
@@ -573,12 +574,12 @@ export const styles = StyleSheet.create({
   },
 
   speakerCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 12,
     flexDirection: 'row',
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     minHeight: 220, 
   },
   speakerImageContainer: {
@@ -594,32 +595,32 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   speakerName: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000000',
+    color: THEME.colors.textHlavni,
     marginBottom: 4,
   },
   speakerJob: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#6B7280',
+    color: THEME.colors.textDoplnkovy,
     marginBottom: 8,
   },
   speakerDesc: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#374151',
+    color: THEME.colors.textDoplnkovy,
     lineHeight: 22,
   },
 
   mobileSpeakerTrigger: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 12,
     padding: 12,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     alignItems: 'center',
   },
   mobileSpeakerTriggerAvatar: {
@@ -646,7 +647,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 1000, 
     height: 500,    
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     overflow: 'hidden',
     flexDirection: 'row', 
@@ -659,13 +660,13 @@ export const styles = StyleSheet.create({
   desktopSpeakerModalTextContainer: {
     flex: 1, 
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
   },
   desktopSpeakerCloseBtn: {
     position: 'absolute',
     top: 20,
     right: 20,
-    backgroundColor: 'white',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -680,12 +681,11 @@ export const styles = StyleSheet.create({
     paddingBottom: 40,
   },
 
-  // Mobilní vyskakovací okno
   mobileSpeakerModalContent: {
     width: '100%',
     maxWidth: 400,
     maxHeight: '100%', 
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     overflow: 'hidden',
     ...Platform.select({ web: { boxShadow: '0px 10px 40px rgba(0,0,0,0.15)' }, default: { elevation: 10 } })
@@ -699,7 +699,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 15,
     right: 15,
-    backgroundColor: 'white',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     width: 32,
     height: 32,
     borderRadius: 16,
@@ -712,22 +712,22 @@ export const styles = StyleSheet.create({
     padding: 25,
   },
   mobileSpeakerModalName: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#111827',
+    color: THEME.colors.textHlavni,
     marginBottom: 6,
   },
   mobileSpeakerModalJob: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#6B7280',
+    color: THEME.colors.textDoplnkovy,
     marginBottom: 15,
   },
   mobileSpeakerModalDesc: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#374151',
+    color: THEME.colors.textDoplnkovy,
     lineHeight: 24,
   },
 
@@ -735,61 +735,61 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   speakerEventCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderWidth: 1,
-    borderColor: '#D1D5DB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     borderRadius: 8,
     padding: 12,
     marginBottom: 10,
   },
   speakerEventTime: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 12,
-    color: '#6B7280',
+    color: THEME.colors.textDoplnkovy,
     marginBottom: 4,
   },
   speakerEventTitle: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#111827',
+    color: THEME.colors.textHlavni,
   },
 
-  // 👇 STYLY PRO FILTR MODAL 👇
   filterTriggerBtn: {
     flexDirection: 'row', 
     alignItems: 'center', 
-    backgroundColor: '#E0E7FF', 
+    backgroundColor: THEME.colors.tlacitkoVypln, 
     paddingVertical: 6, 
     paddingHorizontal: 12, 
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#E0E7FF',
+    borderRadius: THEME.borders.radiusTlacitka,
+    borderWidth: THEME.borders.tloustkaTlacitka,
+    borderColor: THEME.colors.tlacitkoOhraniceni,
     alignSelf: 'flex-start'
   },
   filterTriggerText: {
-    fontFamily: 'Inter_400Regular', 
+    fontFamily: THEME.fonts.regular, 
     marginLeft: 6, 
     fontWeight: 'bold', 
-    fontSize: 13
+    fontSize: 13,
+    color: THEME.colors.tlacitkoText
   },
 
-  // 👇 NOVÉ TŘÍDY POUZE PRO MOBIL 👇
   mobileFilterShareBtn: {
     height: 29, 
     flexDirection: 'row', 
     alignItems: 'center', 
-    backgroundColor: '#E0E7FF', 
+    backgroundColor: THEME.colors.tlacitkoVypln, 
     paddingHorizontal: 12, 
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#E0E7FF',
+    borderRadius: THEME.borders.radiusTlacitka,
+    borderWidth: THEME.borders.tloustkaTlacitka,
+    borderColor: THEME.colors.tlacitkoOhraniceni,
   },
   mobileFilterShareText: {
-    fontFamily: 'Inter_400Regular', 
+    fontFamily: THEME.fonts.regular, 
     marginLeft: 6, 
     fontWeight: 'bold', 
     fontSize: 13,
+    color: THEME.colors.tlacitkoText
   },
 
   filterModalOverlay: {
@@ -801,7 +801,7 @@ export const styles = StyleSheet.create({
     ...(Platform.OS === 'web' ? { backdropFilter: 'blur(5px)' } : {}), 
   },
   filterModalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: THEME.colors.kartaAkcePozadi,
     borderRadius: 16,
     padding: 25,
     width: '100%',
@@ -815,34 +815,34 @@ export const styles = StyleSheet.create({
     marginBottom: 20
   },
   filterMainTitle: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 22,
-    color: '#000',
+    color: THEME.colors.textHlavni,
     fontWeight: 'bold'
   },
   filterResetBtn: {
     borderWidth: 1,
-    borderColor: '#D1D5DB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     borderRadius: 20,
     paddingVertical: 4,
     paddingHorizontal: 12
   },
   filterResetText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 13,
-    color: '#4B5563'
+    color: THEME.colors.textDoplnkovy
   },
   filterFieldWrapper: {
     marginBottom: 20
   },
   filterFieldLabel: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#000',
+    color: THEME.colors.textHlavni,
     marginBottom: 8
   },
   filterFieldBox: {
-    backgroundColor: '#E2E8F0',
+    backgroundColor: THEME.colors.kartaAkceOhraniceni,
     borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 12,
@@ -851,9 +851,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   filterFieldText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#6B7280'
+    color: THEME.colors.textDoplnkovy
   },
   filterConfirmBtn: {
     paddingVertical: 14,
@@ -864,7 +864,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   filterConfirmBtnText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15
@@ -875,9 +875,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 12
   },
   filterCheckboxText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#374151',
+    color: THEME.colors.textDoplnkovy,
     marginLeft: 10
   },
   filterSubModalActions: {
@@ -886,7 +886,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingTop: 20,
     borderTopWidth: 1,
-    borderColor: '#E5E7EB'
+    borderColor: THEME.colors.kartaAkceOhraniceni
   },
   filterSubConfirmBtn: {
     paddingVertical: 12,
@@ -900,8 +900,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   filterSubCancelText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#000'
+    color: THEME.colors.textHlavni
   }
 });

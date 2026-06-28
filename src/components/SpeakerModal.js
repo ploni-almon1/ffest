@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { THEME } from '../../theme'; // 🎨 Import centrálního vzorníku
 
 export default function SpeakerModal({
   visible,
@@ -28,7 +29,7 @@ export default function SpeakerModal({
             </View>
             <View style={styles.desktopSpeakerModalTextContainer}>
               <TouchableOpacity style={styles.desktopSpeakerCloseBtn} onPress={onClose}>
-                <Ionicons name="close" size={24} color="#000" />
+                <Ionicons name="close" size={24} color={THEME.colors.textHlavni} />
               </TouchableOpacity>
               <ScrollView style={{flex: 1}} contentContainerStyle={styles.desktopSpeakerModalInfo}>
                 <Text style={styles.mobileSpeakerModalName}>{speaker.jmeno}</Text>
@@ -56,7 +57,7 @@ export default function SpeakerModal({
             <View style={[styles.mobileSpeakerModalImageContainer, !speaker.fotka && { backgroundColor: themeColor }]}>
               {speaker.fotka && <Image source={{ uri: speaker.fotka }} style={styles.speakerImage} resizeMode="cover" />}
               <TouchableOpacity style={styles.mobileSpeakerCloseBtn} onPress={onClose}>
-                <Ionicons name="close" size={20} color="#000" />
+                <Ionicons name="close" size={20} color={THEME.colors.textHlavni} />
               </TouchableOpacity>
             </View>
             <ScrollView style={{flexShrink: 1}} contentContainerStyle={styles.mobileSpeakerModalInfo}>
@@ -92,36 +93,36 @@ const styles = StyleSheet.create({
     ...(Platform.OS === 'web' ? { backdropFilter: 'blur(12px)' } : {}), 
   },
   desktopSpeakerModalContent: {
-    width: '100%', maxWidth: 1000, height: 500, backgroundColor: '#fff',
-    borderRadius: 16, overflow: 'hidden', flexDirection: 'row', 
+    width: '100%', maxWidth: 1000, height: 500, backgroundColor: THEME.colors.kartaAkcePozadi,
+    borderRadius: THEME.borders.radiusKartyAkce, overflow: 'hidden', flexDirection: 'row', 
     ...Platform.select({ web: { boxShadow: '0px 10px 40px rgba(0,0,0,0.15)' }, default: { elevation: 10 } })
   },
   desktopSpeakerModalImageContainer: { flex: 1, height: '100%' },
   speakerImage: { width: '100%', height: '100%' },
-  desktopSpeakerModalTextContainer: { flex: 1, position: 'relative', backgroundColor: '#fff' },
+  desktopSpeakerModalTextContainer: { flex: 1, position: 'relative', backgroundColor: THEME.colors.kartaAkcePozadi },
   desktopSpeakerCloseBtn: {
-    position: 'absolute', top: 20, right: 20, backgroundColor: 'white',
+    position: 'absolute', top: 20, right: 20, backgroundColor: THEME.colors.kartaAkcePozadi,
     width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center', zIndex: 10,
     ...Platform.select({ web: { boxShadow: '0px 2px 5px rgba(0,0,0,0.2)' }, default: { elevation: 5 } })
   },
   desktopSpeakerModalInfo: { padding: 40, paddingTop: 60, paddingBottom: 40 },
   mobileSpeakerModalContent: {
-    width: '100%', maxWidth: 400, maxHeight: '100%', backgroundColor: '#fff',
-    borderRadius: 16, overflow: 'hidden',
+    width: '100%', maxWidth: 400, maxHeight: '100%', backgroundColor: THEME.colors.kartaAkcePozadi,
+    borderRadius: THEME.borders.radiusKartyAkce, overflow: 'hidden',
     ...Platform.select({ web: { boxShadow: '0px 10px 40px rgba(0,0,0,0.15)' }, default: { elevation: 10 } })
   },
   mobileSpeakerModalImageContainer: { width: '100%', aspectRatio: 1, position: 'relative' },
   mobileSpeakerCloseBtn: {
-    position: 'absolute', top: 15, right: 15, backgroundColor: 'white', width: 32, height: 32, borderRadius: 16,
+    position: 'absolute', top: 15, right: 15, backgroundColor: THEME.colors.kartaAkcePozadi, width: 32, height: 32, borderRadius: 16,
     justifyContent: 'center', alignItems: 'center', zIndex: 10,
     ...Platform.select({ web: { boxShadow: '0px 2px 5px rgba(0,0,0,0.2)' }, default: { elevation: 5 } })
   },
   mobileSpeakerModalInfo: { padding: 25 },
-  mobileSpeakerModalName: { fontFamily: 'Inter_400Regular', fontSize: 24, fontWeight: 'bold', color: '#111827', marginBottom: 6 },
-  mobileSpeakerModalJob: { fontFamily: 'Inter_400Regular', fontSize: 15, color: '#6B7280', marginBottom: 15 },
-  mobileSpeakerModalDesc: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#374151', lineHeight: 24 },
+  mobileSpeakerModalName: { fontFamily: THEME.fonts.regular, fontSize: 24, fontWeight: 'bold', color: THEME.colors.textHlavni, marginBottom: 6 },
+  mobileSpeakerModalJob: { fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textDoplnkovy, marginBottom: 15 },
+  mobileSpeakerModalDesc: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy, lineHeight: 24 },
   speakerEventsSection: { marginTop: 30 },
-  speakerEventCard: { backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, padding: 12, marginBottom: 10 },
-  speakerEventTime: { fontFamily: 'Inter_400Regular', fontSize: 12, color: '#6B7280', marginBottom: 4 },
-  speakerEventTitle: { fontFamily: 'Inter_400Regular', fontSize: 15, fontWeight: 'bold', color: '#111827' }
+  speakerEventCard: { backgroundColor: THEME.colors.kartaAkcePozadi, borderWidth: 1, borderColor: THEME.colors.kartaAkceOhraniceni, borderRadius: 8, padding: 12, marginBottom: 10 },
+  speakerEventTime: { fontFamily: THEME.fonts.regular, fontSize: 12, color: THEME.colors.textDoplnkovy, marginBottom: 4 },
+  speakerEventTitle: { fontFamily: THEME.fonts.regular, fontSize: 15, fontWeight: 'bold', color: THEME.colors.textHlavni }
 });

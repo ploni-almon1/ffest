@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Linking, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { THEME } from '../../theme'; // 🎨 Import centrálního vzorníku
 
 export default function EventCard({ 
   item, 
@@ -52,9 +53,9 @@ export default function EventCard({
             isGrid 
               ? (isDesktop ? styles.desktopCardImage : styles.cardImage) 
               : (isDesktop ? styles.listCardImageDesktop : styles.cardImage),
-            { backgroundColor: '#E5E7EB', justifyContent: 'center', alignItems: 'center' }
+            { backgroundColor: THEME.colors.kartaAkceOhraniceni, justifyContent: 'center', alignItems: 'center' }
           ]}>
-            <Text style={{color: '#9CA3AF'}}>Bez obrázku</Text>
+            <Text style={{color: THEME.colors.textDoplnkovy}}>Bez obrázku</Text>
           </View>
         )}
 
@@ -116,7 +117,7 @@ export default function EventCard({
               )}
             </View>
             <TouchableOpacity onPress={(e) => { e.stopPropagation?.(); prepniOblibene(item.id); }} style={styles.heartIconBtn}>
-              <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={26} color="black" />
+              <Ionicons name={oblibeneIds.includes(item.id) ? "heart" : "heart-outline"} size={26} color={THEME.colors.textHlavni} />
             </TouchableOpacity>
           </View>
         </View>
@@ -136,45 +137,45 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   card: { 
-    backgroundColor: '#FFFFFF', 
-    borderRadius: 10, 
+    backgroundColor: THEME.colors.kartaAkcePozadi, 
+    borderRadius: THEME.borders.radiusKartyAkce, 
     marginBottom: 0, 
     ...Platform.select({
-      web: { boxShadow: '0px 4px 8px rgba(0,0,0,0.12)' },
+      web: { boxShadow: `0px 4px 8px ${THEME.colors.kartaAkceStín}` },
       default: { elevation: 5 }
     })
   },
   cardContent: { padding: 15 },
-  cardImage: { width: '100%', height: 160, borderTopLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: '#E5E7EB' },
+  cardImage: { width: '100%', height: 160, borderTopLeftRadius: THEME.borders.radiusKartyAkce, borderTopRightRadius: THEME.borders.radiusKartyAkce, backgroundColor: THEME.colors.kartaAkceOhraniceni },
   desktopCardImage: {
     width: '100%',
     aspectRatio: 1.5, 
-    borderTopLeftRadius: 10, 
-    borderTopRightRadius: 10, 
-    backgroundColor: '#E5E7EB'
+    borderTopLeftRadius: THEME.borders.radiusKartyAkce, 
+    borderTopRightRadius: THEME.borders.radiusKartyAkce, 
+    backgroundColor: THEME.colors.kartaAkceOhraniceni
   },
   listCardImageDesktop: {
     width: 360,
     height: 270,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    backgroundColor: '#E5E7EB'
+    borderTopLeftRadius: THEME.borders.radiusKartyAkce,
+    borderBottomLeftRadius: THEME.borders.radiusKartyAkce,
+    backgroundColor: THEME.colors.kartaAkceOhraniceni
   },
   timeLocationRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 5, flexWrap: 'wrap' },
-  cardTime: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#4B5563' },
-  desktopCardTime: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#4B5563' },
-  cardTitle: { fontFamily: 'Inter_400Regular', fontSize: 16, fontWeight: 'bold', marginBottom: 10, color: '#111827' },
-  cardHost: { fontFamily: 'Inter_400Regular', fontSize: 14, color: '#374151', marginBottom: 10 },
-  listAnnotation: { fontFamily: 'Inter_400Regular', fontSize: 15, color: '#4B5563', lineHeight: 22, marginTop: 10, marginBottom: 15 },
+  cardTime: { fontFamily: THEME.fonts.regular, fontSize: 16, color: THEME.colors.textDoplnkovy },
+  desktopCardTime: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy },
+  cardTitle: { fontFamily: THEME.fonts.regular, fontSize: 16, fontWeight: 'bold', marginBottom: 10, color: THEME.colors.textHlavni },
+  cardHost: { fontFamily: THEME.fonts.regular, fontSize: 14, color: THEME.colors.textDoplnkovy, marginBottom: 10 },
+  listAnnotation: { fontFamily: THEME.fonts.regular, fontSize: 15, color: THEME.colors.textDoplnkovy, lineHeight: 22, marginTop: 10, marginBottom: 15 },
   cardBottomRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' },
   tagsContainer: { flexDirection: 'row', flexWrap: 'wrap', flex: 1, paddingRight: 10 },
   tagPill: { alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagText: { fontFamily: 'Inter_400Regular', color: 'white', fontSize: 11, fontWeight: '600' },
+  tagText: { fontFamily: THEME.fonts.regular, color: 'white', fontSize: 11, fontWeight: '600' },
   tagPillOutline: { backgroundColor: 'transparent', alignSelf: 'flex-start', paddingVertical: 4, paddingHorizontal: 9, borderRadius: 15, marginRight: 6, marginTop: 6, borderWidth: 1 },
-  tagTextOutline: { fontFamily: 'Inter_400Regular', fontSize: 11, fontWeight: '600' },
+  tagTextOutline: { fontFamily: THEME.fonts.regular, fontSize: 11, fontWeight: '600' },
   tagPillRezervovano: { backgroundColor: 'transparent', borderColor: '#10B981' },
   tagTextRezervovano: { color: '#10B981' },
-  tagPillPlno: { backgroundColor: '#D1D5DB', borderColor: '#D1D5DB' },
-  tagTextPlno: { color: '#4B5563' },
+  tagPillPlno: { backgroundColor: THEME.colors.kartaAkceOhraniceni, borderColor: THEME.colors.kartaAkceOhraniceni },
+  tagTextPlno: { color: THEME.colors.textDoplnkovy },
   heartIconBtn: { paddingBottom: 0, paddingLeft: 10, marginBottom: -4 }
 });

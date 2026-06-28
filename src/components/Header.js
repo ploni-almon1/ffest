@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Linking, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { THEME } from '../../theme';
 
 export default function Header({
   isDesktop,
@@ -58,7 +59,7 @@ export default function Header({
                     onMouseLeave={() => setHoveredMenuItem(null)}
                     onPress={() => { setAktivniTab('Program'); setVybranyDen('VŠE'); setVybranyTag(null); setActiveFilters(vychoziFiltry); setDetailAkce(null); setProgramDropdownVisible(false); }}
                   >
-                    <Text style={[styles.dropdownItemText, hoveredMenuItem === 'Program' && { color: 'black', fontWeight: 'bold' }]}>PROGRAM</Text>
+                    <Text style={[styles.dropdownItemText, hoveredMenuItem === 'Program' && { color: THEME.colors.textHlavickyHover, fontWeight: 'bold' }]}>PROGRAM</Text>
                   </TouchableOpacity>
                   <TouchableOpacity 
                     style={styles.dropdownItem}
@@ -66,7 +67,7 @@ export default function Header({
                     onMouseLeave={() => setHoveredMenuItem(null)}
                     onPress={() => { setAktivniTab('Hoste'); setDetailAkce(null); setProgramDropdownVisible(false); }}
                   >
-                    <Text style={[styles.dropdownItemText, hoveredMenuItem === 'Hoste' && { color: 'black', fontWeight: 'bold' }]}>HOSTÉ</Text>
+                    <Text style={[styles.dropdownItemText, hoveredMenuItem === 'Hoste' && { color: THEME.colors.textHlavickyHover, fontWeight: 'bold' }]}>HOSTÉ</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -79,7 +80,7 @@ export default function Header({
               <Text style={[styles.desktopMenuText, aktivniTab === 'Partneri' && { color: themeColor, fontWeight: 'bold' }]}>POŘADATELÉ</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.desktopHeaderFavBtn} onPress={() => { setDetailAkce(null); setAktivniTab('Oblíbené'); }}>
-              <Ionicons name={oblibeneIds.length > 0 || (aktivniTab === 'Oblíbené' && !detailAkce) ? "heart" : "heart-outline"} size={24} color={aktivniTab === 'Oblíbené' && !detailAkce ? themeColor : "black"} />
+              <Ionicons name={oblibeneIds.length > 0 || (aktivniTab === 'Oblíbené' && !detailAkce) ? "heart" : "heart-outline"} size={24} color={aktivniTab === 'Oblíbené' && !detailAkce ? themeColor : THEME.colors.textHlavickyAktivni} />
               {oblibeneIds.length > 0 && <Text style={[styles.desktopHeaderFavCount, aktivniTab === 'Oblíbené' && !detailAkce && { color: themeColor }]}>{oblibeneIds.length}</Text>}
             </TouchableOpacity>
           </View>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   desktopHeader: { 
     height: 55,
     width: '100%',
-    backgroundColor: '#FFFFFF', 
+    backgroundColor: THEME.colors.pozadiHlavicky, 
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 15,
@@ -117,10 +118,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#FFFFFF', 
+    backgroundColor: THEME.colors.pozadiHlavicky, 
     paddingHorizontal: 15, 
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: THEME.colors.kartaAkceOhraniceni,
   },
   desktopHeaderInner: {
     width: '100%',
@@ -136,23 +137,28 @@ const styles = StyleSheet.create({
     marginLeft: -5, 
   },
   headerLogo: { width: 36, height: 36, marginRight: 10, resizeMode: 'contain' },
-  headerText: { fontFamily: 'Inter_400Regular', color: '#000000', fontSize: 22, includeFontPadding: false },
+  headerText: { 
+    fontFamily: THEME.fonts.regular, 
+    color: THEME.colors.textHlavickyAktivni, 
+    fontSize: 22, 
+    includeFontPadding: false 
+  },
   desktopHeaderMenu: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 25,
   },
   desktopMenuText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 16,
-    color: '#000000',
+    color: THEME.colors.textHlavickyAktivni,
     letterSpacing: 0.5,
   },
   dropdownContainer: {
     position: 'absolute',
     top: '100%',
     left: -15,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.colors.pozadiHlavicky,
     minWidth: 150,
     borderRadius: 8,
     paddingVertical: 8,
@@ -167,9 +173,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   dropdownItemText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#6B7280',
+    color: THEME.colors.textHlavickyPasivni,
   },
   desktopHeaderFavBtn: {
     flexDirection: 'row',
@@ -177,9 +183,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   desktopHeaderFavCount: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 18,
-    color: '#000000',
+    color: THEME.colors.textHlavickyAktivni,
     marginLeft: 6, 
   }
 });

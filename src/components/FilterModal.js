@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Modal, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { THEME } from '../../theme'; // 🎨 Import centrálního vzorníku
 
 export default function FilterModal({
   filterModalVisible,
@@ -49,7 +50,7 @@ export default function FilterModal({
                     <Text style={[styles.filterFieldText, vybranePocet > 0 && { color: themeColor, fontWeight: 'bold' }]}>
                       {labelText}
                     </Text>
-                    <Ionicons name="chevron-down" size={20} color="#111827" />
+                    <Ionicons name="chevron-down" size={20} color={THEME.colors.textHlavni} />
                   </TouchableOpacity>
                 </View>
               );
@@ -95,11 +96,11 @@ export default function FilterModal({
                         }
                       }}
                     >
-                      <Ionicons name={isAllSelected ? "checkmark-circle" : "ellipse-outline"} size={22} color={isAllSelected ? themeColor : "#D1D5DB"} />
+                      <Ionicons name={isAllSelected ? "checkmark-circle" : "ellipse-outline"} size={22} color={isAllSelected ? themeColor : THEME.colors.kartaAkceOhraniceni} />
                       <Text style={styles.filterCheckboxText}>OZNAČIT VŠE</Text>
                     </TouchableOpacity>
                     
-                    <View style={{ height: 1, backgroundColor: '#E5E7EB', marginVertical: 10 }} />
+                    <View style={{ height: 1, backgroundColor: THEME.colors.kartaAkceOhraniceni, marginVertical: 10 }} />
 
                     {currentOptions.map((option, idx) => {
                       const isSelected = selectedOptions.includes(option);
@@ -115,8 +116,8 @@ export default function FilterModal({
                             }
                           }}
                         >
-                          <Ionicons name={isSelected ? "checkmark-circle" : "ellipse-outline"} size={22} color={isSelected ? themeColor : "#D1D5DB"} />
-                          <Text style={[styles.filterCheckboxText, isSelected && { fontWeight: 'bold', color: '#000' }]}>{option}</Text>
+                          <Ionicons name={isSelected ? "checkmark-circle" : "ellipse-outline"} size={22} color={isSelected ? themeColor : THEME.colors.kartaAkceOhraniceni} />
+                          <Text style={[styles.filterCheckboxText, isSelected && { fontWeight: 'bold', color: THEME.colors.textHlavni }]}>{option}</Text>
                         </TouchableOpacity>
                       );
                     })}
@@ -158,12 +159,12 @@ const styles = StyleSheet.create({
     ...(Platform.OS === 'web' ? { backdropFilter: 'blur(5px)' } : {}), 
   },
   filterModalContent: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
+    backgroundColor: THEME.colors.kartaAkcePozadi,
+    borderRadius: THEME.borders.radiusKartyAkce,
     padding: 25,
     width: '100%',
     maxWidth: 400,
-    ...Platform.select({ web: { boxShadow: '0px 4px 15px rgba(0,0,0,0.1)' }, default: { elevation: 8 } })
+    ...Platform.select({ web: { boxShadow: `0px 4px 15px ${THEME.colors.kartaAkceStín}` }, default: { elevation: 8 } })
   },
   filterHeaderRow: {
     flexDirection: 'row',
@@ -172,34 +173,34 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   filterMainTitle: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 22,
-    color: '#000',
+    color: THEME.colors.textHlavni,
     fontWeight: 'bold'
   },
   filterResetBtn: {
     borderWidth: 1,
-    borderColor: '#D1D5DB',
+    borderColor: THEME.colors.kartaAkceOhraniceni,
     borderRadius: 20,
     paddingVertical: 4,
     paddingHorizontal: 12
   },
   filterResetText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 13,
-    color: '#4B5563'
+    color: THEME.colors.textDoplnkovy
   },
   filterFieldWrapper: {
     marginBottom: 20
   },
   filterFieldLabel: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#000',
+    color: THEME.colors.textHlavni,
     marginBottom: 8
   },
   filterFieldBox: {
-    backgroundColor: '#E2E8F0',
+    backgroundColor: THEME.colors.kartaAkceOhraniceni, // Použijeme stejnou barvu jako hranice pro jemné šedé pozadí inputů
     borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 12,
@@ -208,9 +209,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   filterFieldText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
-    color: '#6B7280'
+    color: THEME.colors.textDoplnkovy
   },
   filterConfirmBtn: {
     paddingVertical: 14,
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   filterConfirmBtnText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15
@@ -232,9 +233,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12
   },
   filterCheckboxText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#374151',
+    color: THEME.colors.textDoplnkovy,
     marginLeft: 10
   },
   filterSubModalActions: {
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingTop: 20,
     borderTopWidth: 1,
-    borderColor: '#E5E7EB'
+    borderColor: THEME.colors.kartaAkceOhraniceni
   },
   filterSubConfirmBtn: {
     paddingVertical: 12,
@@ -257,8 +258,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   filterSubCancelText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#000'
+    color: THEME.colors.textHlavni
   }
 });

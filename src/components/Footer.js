@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, Platform, Linking, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { THEME } from '../../theme'; // 🎨 Import vzorníku
 
 export default function Footer({ isDesktop }) {
   return (
@@ -8,7 +9,7 @@ export default function Footer({ isDesktop }) {
       <View style={[styles.footerInner, !isDesktop && { flexDirection: 'column', alignItems: 'flex-start' }]}>
         
         <View style={[styles.footerLogoCol, !isDesktop && { marginBottom: 35 }]}>
-          <Image source={require('../../assets/star.png')} style={[styles.footerLogo, { tintColor: '#FFFFFF' }]} />
+          <Image source={require('../../assets/star.png')} style={[styles.footerLogo, { tintColor: THEME.colors.textHlavickyAktivni }]} />
           <Text style={styles.footerTitleText}>DNY{'\n'}ŽIDOVSKÉ{'\n'}KULTURY{'\n'}OLOMOUC</Text>
         </View>
 
@@ -57,7 +58,7 @@ export default function Footer({ isDesktop }) {
 
 const styles = StyleSheet.create({
   footerContainer: {
-    backgroundColor: '#000000',
+    backgroundColor: '#000000', // Pokud chceš, můžeš zde dát např. THEME.colors.pozadiHlavicky
     width: '100%',
     paddingVertical: 25, 
     alignItems: 'center',
@@ -71,43 +72,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center', 
   },
-  footerLogoCol: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  footerLogo: {
-    width: 48,
-    height: 48,
-    resizeMode: 'contain',
-    marginRight: 15,
-  },
+  footerLogoCol: { flexDirection: 'row', alignItems: 'center' },
+  footerLogo: { width: 48, height: 48, resizeMode: 'contain', marginRight: 15 },
   footerTitleText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 15,
-    color: '#FFFFFF',
+    color: '#FFFFFF', // Bílá pro čitelnost na černém pozadí
     lineHeight: 20,
     letterSpacing: 0.5,
   },
-  footerTextCol: {
-    justifyContent: 'flex-start',
-  },
+  footerTextCol: { justifyContent: 'flex-start' },
   footerLabel: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
     color: '#FFFFFF',
     marginBottom: 5,
   },
   footerText: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: THEME.fonts.regular,
     fontSize: 14,
     color: '#FFFFFF',
     lineHeight: 22,
   },
-  footerSocialCol: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-  },
+  footerSocialCol: { flexDirection: 'row', alignItems: 'center', gap: 15 },
   footerSocialBtn: {
     width: 40,
     height: 40,
@@ -115,12 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
-    display: 'flex', 
   },
-  footerSocialIconImg: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    resizeMode: 'cover',
-  }
+  footerSocialIconImg: { width: 40, height: 40, borderRadius: 20, resizeMode: 'cover' }
 });
